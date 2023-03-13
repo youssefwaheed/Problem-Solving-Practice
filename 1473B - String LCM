@@ -1,0 +1,37 @@
+#define fast std::ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+typedef vector<int> iv;
+typedef vector<ll> llv;
+#define el "\n"
+#define all(x) (x).begin(),(x).end()
+#define sz(s) (int)(s).size()
+const int N = (int)2e5+5;
+void solve() {
+    string s,t;
+    cin>>s>>t;
+    int lenS = sz(s),lenT = sz(t);
+    // the lcm between the 2 string is the same as the lcm between their sizes
+    int lcm = lenS * (lenT /__gcd(lenS,lenT));
+    //check if there is any chars that are not equal so we can not make the lcm string
+    for (int i = 0; i < lcm; ++i) {
+        if(s[i % lenS] != t[i % lenT]){
+            cout<<-1<<el;
+            return;
+        }
+    }
+    //now create it its len will be lcm and it will contain the chars in common
+    for (int i = 0; i < lcm; ++i) {
+        cout<<s[i % lenS];
+    }
+    cout<<el;
+}
+int main() {
+    fast;
+    int t = 1;
+    cin >> t;
+    while (t--)
+        solve();
+    return 0;
+}
