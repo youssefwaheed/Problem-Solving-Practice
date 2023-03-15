@@ -1,0 +1,33 @@
+#define fast std::ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+typedef vector<int> iv;
+typedef vector<ll> llv;
+#define el "\n"
+#define all(x) (x).begin(),(x).end()
+#define sz(s) (int)(s).size()
+const int N = (int)2e5+5;
+void solve() {
+    ll a,b;
+    cin>>a>>b;
+    //we want a * b + a + b = concat(a+b)
+    //so when reduce the equation we find that 
+    // b + 1 = a ^ |b| as |b| is len of decimal representation of b
+    // the ans will always be some number ans 9 or 99 or 999 so on 
+    ll ans = 0;
+    ll x = 9;
+    while(x <= b){
+        ans += a;
+        x = (x * 10 + 9);
+    }
+    cout<<ans<<el;
+}
+int main() {
+    fast;
+    int t = 1;
+    cin >> t;
+    while (t--)
+        solve();
+    return 0;
+}
