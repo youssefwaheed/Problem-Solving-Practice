@@ -1,0 +1,38 @@
+#define fast std::ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+typedef vector<int> iv;
+typedef vector<ll> llv;
+#define el "\n"
+#define all(x) (x).begin(),(x).end()
+#define sz(s) (int)(s).size()
+const int N = (int)2e5+5;
+void solve() {
+    ll n;
+    cin>>n;
+    ll ans = 0;
+    map<int,ll> mp;
+    //if the current element does not exist before so all elements before me can make a pair with me
+    // else all elements before me except who equals me can make a pair with me
+    for (int i = 0; i < n; ++i) {
+        int x;
+        cin>>x;
+        if(!mp.count(x)){
+            ans+=i;
+        }
+        else{
+            ans+=(i-mp[x]);
+        }
+        mp[x]++;
+    }
+    cout<<ans<<el;
+}
+int main() {
+    fast;
+    int t = 1;
+   // cin >> t;
+    while (t--)
+        solve();
+    return 0;
+}
