@@ -1,0 +1,55 @@
+#define fast std::ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+typedef vector<int> iv;
+typedef vector<ll> llv;
+#define el "\n"
+#define all(x) (x).begin(),(x).end()
+#define sz(s) (int)(s).size()
+const int N = 1050;
+const int mod = 1000000007;
+ll dp[N][N];
+ll nCr(int n,int r){
+    ll &ans = dp[n][r];
+    if(ans != 0)
+        return ans;
+
+    if(r == 1) {
+        ans = n;
+        return ans;
+    }
+    if(r == n){
+        ans = 1;
+        return ans;
+    }
+    ans =  nCr(n-1,r) % mod + nCr(n-1,r-1) % mod;
+    return ans;
+}
+void solve() {
+    int n,k;
+    cin>>n>>k;
+    iv v(n);
+    map<int,int> mp1,mp2;
+    for (int i = 0; i < n; ++i) {
+        cin>>v[i];
+        mp1[v[i]]++;
+    }
+    sort(all(v),greater<>());
+    for (int i = 0; i < k; ++i) {
+        mp2[v[i]]++;
+    }
+    ll ans = 1;
+    for(auto i : mp2){
+        ans*= (nCr(mp1[i.first],i.second))%mod;
+    }
+    cout<<ans<<el;
+}
+int main() {
+    fast;
+    int t = 1;
+    cin >> t;
+    while (t--)
+        solve();
+    return 0;
+}
