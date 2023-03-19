@@ -1,0 +1,39 @@
+#define fast std::ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+typedef vector<int> iv;
+typedef vector<ll> llv;
+#define el "\n"
+#define all(x) (x).begin(),(x).end()
+#define sz(s) (int)(s).size()
+const int N = (int)2e5+5;
+ll lcm(ll x,ll y){
+    return y/__gcd(x,y) * x;
+}
+void solve() {
+    ll n,k;
+    cin>>n>>k;
+    if(k >= 43) {
+        cout << "NO" << el;
+        return;
+    }
+    //(n+1) must be divided by lcm from all numbers from 1 to k
+    //to have distinct ans n % i = i-1 for all i
+    //tha equals to (n+1) % lcm(form 1 to k) == 0
+    ll res = 1;
+    for (int i = 1; i <= k ; ++i) {
+        res = lcm(res,i);
+    }
+    if((n +1) % res == 0)
+        cout<<"Yes"<<el;
+    else cout<<"No"<<el;
+}
+int main() {
+    fast;
+    int t = 1;
+    //cin >> t;
+    while (t--)
+        solve();
+    return 0;
+}
