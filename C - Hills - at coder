@@ -1,0 +1,45 @@
+#define fast std::ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+typedef vector<int> iv;
+typedef vector<ll> llv;
+#define el "\n"
+#define all(x) (x).begin(),(x).end()
+#define sz(s) (int)(s).size()
+const int N = 1050;
+const int mod = 1000000007;
+void solve() {
+    int n,m;
+    cin>>n>>m;
+    vector<vector<int>> v(n+1);
+    iv cost(n+1);
+    for (int i = 1; i <= n ; ++i) {
+        cin>>cost[i];
+    }
+    for (int i = 0; i < m; ++i) {
+        int x,y;
+        cin>>x>>y;
+        v[x].push_back(y);
+        v[y].push_back(x);
+    }
+    int ans = n;
+    for (int i = 1; i <= n; ++i) {
+        int cur = cost[i];
+       for(auto &j : v[i]){
+           if(cur <= cost[j]){
+               ans--;
+               break;
+           }
+       }
+    }
+    cout<<ans<<el;
+}
+int main() {
+    fast;
+    int t = 1;
+    //cin >> t;
+    while (t--)
+        solve();
+    return 0;
+}
