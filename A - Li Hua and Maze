@@ -1,0 +1,47 @@
+#define fast std::ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+typedef vector<int> iv;
+typedef vector<ll> llv;
+#define el "\n"
+#define all(x) (x).begin(),(x).end()
+#define sz(s) (int)(s).size()
+const int N = 4001;
+const int mod = 1000000007;
+bool visited[N];
+vector<int> e;
+int n,m;
+bool corner(int x,int y){
+    if((x == 1 && y == 1 )|| (x == 1 && y == m) || (x == n && y == 1) || (x == n && y == m))
+        return 1;
+    return 0;
+}
+bool not_corner(int x,int y){
+    if(y == 1 || y == m || x == 1 || x == n)
+        return 1;
+    return 0;
+}
+void solve() {
+   cin>>n>>m;
+   int x1,y1,x2,y2;
+   cin>>x1>>y1>>x2>>y2;
+   if(corner(x1,y1) || corner(x2,y2))
+       cout<<2<<el;
+   else if(not_corner(x1,y1) || not_corner(x2,y2))
+       cout<<3<<el;
+   else cout<<4<<el;
+}
+
+int main() {
+#ifndef ONLINE_JUDGE
+    freopen("Input.txt","r",stdin);
+    freopen("Output.txt","w",stdout);
+#endif
+    fast;
+    int t = 1;
+    cin >> t;
+    while (t--)
+        solve();
+    return 0;
+}
