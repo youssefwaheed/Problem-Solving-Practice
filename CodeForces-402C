@@ -1,0 +1,38 @@
+#define fast std::ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+typedef vector<int> iv;
+typedef vector<ll> llv;
+#define el "\n"
+#define all(x) (x).begin(),(x).end()
+#define sz(s) (int)(s).size()
+const int N = 4001;
+const int mod = 1000000007;
+bool visited[N];
+vector<vector<bool>> e;
+iv d;
+int n,m;
+void solve() {
+    cin>>n>>m;
+    int x = 2*n + m;
+    for (int i = 1; i <= n && x; ++i) {
+        for (int j = i+1; j <= n && x; ++j) {
+            cout<<i<<" "<<j<<el;
+            x--;
+        }
+    }
+}
+
+int main() {
+#ifndef ONLINE_JUDGE
+    freopen("Input.txt","r",stdin);
+    freopen("Output.txt","w",stdout);
+#endif
+    fast;
+    int t = 1;
+    cin >> t;
+    while (t--)
+        solve();
+    return 0;
+}
