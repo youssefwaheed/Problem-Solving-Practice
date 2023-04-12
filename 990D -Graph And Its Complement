@@ -1,0 +1,73 @@
+//
+#define fast std::ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+typedef vector<int> iv;
+typedef vector<ll> llv;
+#define el "\n"
+#define all(x) (x).begin(),(x).end()
+#define sz(s) (int)(s).size()
+const int N = 4001;
+const int mod = 1000000007;
+bool visited[N];
+vector<int> e;
+int n,m;
+vector<vector<int>>ans;
+void solve() {
+    int a,b;
+    //the idea is tha if i have a graph and it has any number of components it's complement must have 1 compomnets and the opsite is true
+    cin>>n>>a>>b;
+    ans.resize(n,vector<int>(n));
+    if(min(a,b) != 1){
+        cout<<"NO"<<el;
+    }
+    else{
+        if(a == 1 && b == 1 && (n == 2 || n == 3)) {
+            cout << "NO" << el;
+            return;
+        }
+        if(a == 1 && b == 1) {
+            cout << "YES" << el;
+            for (int i = 1; i < n; ++i) {
+                ans[i][i - 1] = ans[i - 1][i] = 1;
+            }
+            for (int i = 0; i < n; ++i) {
+                for (int j = 0; j < n; ++j) {
+                    cout << ans[i][j];
+                }
+                cout << el;
+            }
+        }
+        else{
+            cout << "YES" << el;
+            bool x = 0;
+            if(a == 1){
+                swap(a,b);
+                x = 1;
+            }
+            for (int i = n-a; i > 0; --i) {
+                ans[i][i - 1] = ans[i - 1][i] = 1;
+            }
+            for (int i = 0; i < n; ++i) {
+                for (int j = 0; j < n; ++j) {
+                    cout << ( (ans[i][j] ^ x) && (i != j));
+                }
+                cout << el;
+            }
+        }
+    }
+}
+
+int main() {
+#ifndef ONLINE_JUDGE
+    freopen("Input.txt","r",stdin);
+    freopen("Output.txt","w",stdout);
+#endif
+    fast;
+    int t = 1;
+    //cin >> t;
+    while (t--)
+        solve();
+    return 0;
+}
