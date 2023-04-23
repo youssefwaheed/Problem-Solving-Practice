@@ -1,0 +1,60 @@
+#define fast std::ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+typedef vector<int> iv;
+typedef vector<ll> llv;
+#define el "\n"
+#define all(x) (x).begin(),(x).end()
+#define sz(s) (int)(s).size()
+const int N = 201;
+const int mod = 1000000007;
+vector<bool> visited;
+vector<bool> color;
+vector<vector<int>> adj;
+int n,m;
+/********************************************************************/
+bool cycle = false;
+void dfs(int node){
+    visited[node] = true;
+    for (int i : adj[node]) {
+        if(!visited[i])dfs(i);
+    }
+}
+void solve(){
+    cin>>n>>m;
+    adj.resize(n+1);
+    visited.resize(n+1);
+    for (int i = 0; i < m; ++i) {
+        int u,v;
+        cin>>u>>v;
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+    }
+    if(n != m)cout<<"NO"<<el;
+    else{
+        dfs(1);
+        for (int i = 1; i <= n ; ++i) {
+            if(visited[i] == 0){
+                cout<<"NO"<<el;
+                return;
+            }
+        }
+        cout<<"FHTAGN!"<<el;
+    }
+}
+int main() {
+#ifndef ONLINE_JUDGE
+    freopen("Input.txt","r",stdin);
+    auto _clock_start = chrono::high_resolution_clock::now();
+    freopen("Output.txt","w",stdout);
+#endif
+    fast;
+    int t = 1;
+    //cin >> t;
+    while (t--)
+        solve();
+    return 0;
+
+}
+	   	 	    	 				 					    				
